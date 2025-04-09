@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmd:MD_Metadata xsi:schemaLocation="http://www.isotc211.org/2005/gmd ../schemas/iso19139fra/gmd/gmd.xsd" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:map="urn:brgm:mapping" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:gfc="http://www.isotc211.org/2005/gfc" xmlns:gco="http://www.isotc211.org/2005/gco">
+	<geosoft xmlns="http://www.geosoft.com/schema/geo">
+		<dataset version="1">
+			<title>gravimetrico_residual</title>
+			<file_format>Geosoft Grid</file_format>
+			<project_name>g:\meu drive\pesquisa\colaboradores\oderson\carajas_2025\carajas2025.gpf</project_name>
+			<data_created_by>DESKTOP-LUIZEMA\Luizemara</data_created_by>
+			<data_creation_date>2025-04-09</data_creation_date>
+			<metadata_created_by>DESKTOP-LUIZEMA\Luizemara</metadata_created_by>
+			<metadata_creation_date>2025-04-09</metadata_creation_date>
+			<lineage>
+				<process name="geogxnet.dll(Geosoft.GX.GridUtils.CopyConvertMultiGrids;Run)" user="DESKTOP-LUIZEMA\Luizemara" version="Version 2023.2 (20231121.28)" date="2025-04-09" time="20:01:14">
+					<parameter name="GRIDCOPY::DISPLAY_OPTION" value="Display grid" type="string"/>
+					<parameter name="GRIDCOPY::IN" value=".\1123_GravLines_BOUG_residual-hp100km.grd(GRD)" type="string"/>
+					<parameter name="GRIDCOPY::OUT" value="..\..\..\..\Compartilhamento\TCC_Univesp\grd_tipo_surfer\gravimetrico_residual.grd(SRF;VER=V7)" type="string"/>
+					<parameter name="GRIDCOPY::OUT_FORMAT" value="SRF;VER=V7" type="string"/>
+					<parameter name="GRIDCOPY::OVERWRITE" value="1" type="integer"/>
+					<source name="g:\meu drive\Pesquisa\colaboradores\Oderson\carajas_2025\1123_GravLines_BOUG_residual-hp100km.grd" type="GRID">
+						<lineage>
+							<process name="geogxnet.dll(Geosoft.GX.FFT2D.MAGMAPFiltering;Run)" user="DESKTOP-LUIZEMA\Luizemara" version="Version 2023.2 (20231121.28)" date="2025-03-25" time="16:19:06">
+								<parameter name="MAGMAP1::ALIM" value="" type="string"/>
+								<parameter name="MAGMAP1::CONFIL" value=".\hp.con" type="string"/>
+								<parameter name="MAGMAP1::DISPLAY_OPTION" value="D" type="string"/>
+								<parameter name="MAGMAP1::ELIM" value="" type="string"/>
+								<parameter name="MAGMAP1::FILL" value="maximum entropy" type="string"/>
+								<parameter name="MAGMAP1::INGRD" value=".\1123_GravLines_BOUG.grd(GRD)" type="string"/>
+								<parameter name="MAGMAP1::OUTGRD" value=".\1123_GravLines_BOUG_residual-hp100km.grd(GRD)" type="string"/>
+								<parameter name="MAGMAP1::PEX" value="10" type="string"/>
+								<parameter name="MAGMAP1::PREP" value="yes" type="string"/>
+								<parameter name="MAGMAP1::TBASE" value="edge points" type="string"/>
+								<parameter name="MAGMAP1::TEX" value="square" type="string"/>
+								<parameter name="MAGMAP1::TORDER" value="first order" type="string"/>
+								<parameter name="MAGMAP1::ZDIST" value="" type="string"/>
+								<source name="g:\meu drive\Pesquisa\colaboradores\Oderson\carajas_2025\1123_GravLines_BOUG.grd" type="GRID"/>
+								<source name="g:\meu drive\Pesquisa\colaboradores\Oderson\carajas_2025\1123_GravLines_BOUGprp.grd" type="GRID"/>
+								<source name="g:\meu drive\Pesquisa\colaboradores\Oderson\carajas_2025\1123_GravLines_BOUGtrn.grd" type="GRID"/>
+							</process>
+						</lineage>
+					</source>
+				</process>
+			</lineage>
+			<georeference>
+				<dataextents>
+					<extent2d minx="277429.38" miny="9102750.7" maxx="668179.38" maxy="9460500.7"/>
+				</dataextents>
+				<projection type="TRANSVERSE_MERCATOR" name="WGS 84 / UTM zone 22S" wellknown_epsg="32722" projection="UTM zone 22S" ellipsoid="WGS 84" datum="WGS 84" datumtrf="WGS 84" datumtrf_description="[WGS 84] World" radius="6378137" eccentricity="0.081819190842621486">
+					<shift x="0" y="0" z="0"/>
+					<parameters scale="0.9996" false_east="500000" false_north="10000000" lat_origin="0" lon_origin="-51"/>
+					<units name="m" unit_scale="1"/>
+				</projection>
+			</georeference>
+		</dataset>
+	</geosoft>
+	<gmd:dataQualityInfo>
+		<gmd:DQ_DataQuality>
+			<gmd:lineage>
+				<gmd:LI_Lineage>
+					<gmd:processStep xlink:type="Geosoft Process" xlink:title="geogxnet.dll(Geosoft.GX.GridUtils.CopyConvertMultiGrids;Run)">
+						<gmd:LI_ProcessStep>
+							<gmd:dateTime>
+								<gco:DateTime>2025-04-09T20:01:14</gco:DateTime>
+							</gmd:dateTime>
+							<gmd:processor>
+								<gmd:CI_ResponsibleParty>
+									<gmd:individualName>
+										<gco:CharacterString>DESKTOP-LUIZEMA\Luizemara</gco:CharacterString>
+									</gmd:individualName>
+								</gmd:CI_ResponsibleParty>
+							</gmd:processor>
+							<gmd:source xlink:type="Data Parameter" xlink:role="GRIDCOPY::DISPLAY_OPTION" xlink:title="Display grid">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="GRIDCOPY::IN" xlink:title=".\1123_GravLines_BOUG_residual-hp100km.grd(GRD)">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="GRIDCOPY::OUT" xlink:title="..\..\..\..\Compartilhamento\TCC_Univesp\grd_tipo_surfer\gravimetrico_residual.grd(SRF;VER=V7)">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="GRIDCOPY::OUT_FORMAT" xlink:title="SRF;VER=V7">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="GRIDCOPY::OVERWRITE" xlink:title="1">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Source" xlink:role="GRID" xlink:title="g:\meu drive\Pesquisa\colaboradores\Oderson\carajas_2025\1123_GravLines_BOUG_residual-hp100km.grd">
+								<gmd:LI_Source/>
+							</gmd:source>
+						</gmd:LI_ProcessStep>
+					</gmd:processStep>
+				</gmd:LI_Lineage>
+			</gmd:lineage>
+		</gmd:DQ_DataQuality>
+	</gmd:dataQualityInfo>
+	<gmd:identificationInfo>
+		<gmd:MD_DataIdentification>
+			<gmd:citation>
+				<gmd:CI_Citation>
+					<gmd:title>
+						<gco:CharacterString>gravimetrico_residual</gco:CharacterString>
+					</gmd:title>
+					<gmd:collectiveTitle>
+						<gco:CharacterString>g:\meu drive\pesquisa\colaboradores\oderson\carajas_2025\carajas2025.gpf</gco:CharacterString>
+					</gmd:collectiveTitle>
+					<gmd:date>
+						<gmd:CI_Date>
+							<gmd:date>
+								<gco:Date>2025-4-9</gco:Date>
+							</gmd:date>
+						</gmd:CI_Date>
+					</gmd:date>
+				</gmd:CI_Citation>
+			</gmd:citation>
+			<gmd:resourceFormat>
+				<gmd:MD_Format>
+					<gmd:name>
+						<gco:CharacterString>Geosoft Grid</gco:CharacterString>
+					</gmd:name>
+				</gmd:MD_Format>
+			</gmd:resourceFormat>
+			<gmd:pointOfContact>
+				<gmd:CI_ResponsibleParty>
+					<gmd:individualName>
+						<gco:CharacterString>DESKTOP-LUIZEMA\Luizemara</gco:CharacterString>
+					</gmd:individualName>
+				</gmd:CI_ResponsibleParty>
+			</gmd:pointOfContact>
+			<gmd:extent>
+				<gmd:EX_Extent>
+					<gmd:geographicElement>
+						<gmd:EX_GeographicBoundingBox>
+							<gmd:westBoundLongitude>
+								<gco:Decimal>-53.019863371981558</gco:Decimal>
+							</gmd:westBoundLongitude>
+							<gmd:eastBoundLongitude>
+								<gco:Decimal>-49.473606450328184</gco:Decimal>
+							</gmd:eastBoundLongitude>
+							<gmd:southBoundLatitude>
+								<gco:Decimal>-8.1171526892253318</gco:Decimal>
+							</gmd:southBoundLatitude>
+							<gmd:northBoundLatitude>
+								<gco:Decimal>-4.8779013602903092</gco:Decimal>
+							</gmd:northBoundLatitude>
+						</gmd:EX_GeographicBoundingBox>
+					</gmd:geographicElement>
+				</gmd:EX_Extent>
+			</gmd:extent>
+		</gmd:MD_DataIdentification>
+	</gmd:identificationInfo>
+	<gmd:contact>
+		<gmd:CI_ResponsibleParty>
+			<gmd:individualName>
+				<gco:CharacterString>DESKTOP-LUIZEMA\Luizemara</gco:CharacterString>
+			</gmd:individualName>
+		</gmd:CI_ResponsibleParty>
+	</gmd:contact>
+	<gmd:dateStamp>
+		<gco:Date>2025-4-9</gco:Date>
+	</gmd:dateStamp>
+	<gmd:referenceSystemInfo>
+		<gmd:MD_ReferenceSystem>
+			<gmd:referenceSystemIdentifier>
+				<gmd:RS_Identifier>
+					<gmd:codeSpace>
+						<gco:CharacterString>ESRI</gco:CharacterString>
+					</gmd:codeSpace>
+					<gmd:code>
+						<gco:CharacterString>PROJCS["WGS_1984_UTM_Zone_22S",GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984",6378137.0,298.257223563]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],PROJECTION["Transverse_Mercator"],PARAMETER["False_Easting",500000.0],PARAMETER["False_Northing",10000000.0],PARAMETER["Central_Meridian",-51.0],PARAMETER["Scale_Factor",0.9996],PARAMETER["Latitude_Of_Origin",0.0],UNIT["Meter",1.0],AUTHORITY["EPSG",32722]]</gco:CharacterString>
+					</gmd:code>
+					<gmd:version>
+						<gco:CharacterString>1</gco:CharacterString>
+					</gmd:version>
+				</gmd:RS_Identifier>
+			</gmd:referenceSystemIdentifier>
+		</gmd:MD_ReferenceSystem>
+	</gmd:referenceSystemInfo>
+</gmd:MD_Metadata>
