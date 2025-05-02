@@ -1,0 +1,43 @@
+INFORMAÇÕES DO PRODUTO 
+
+Projeto: ARIM Carajás: Evolução crustal e metalogenia da Província Mineral de Carajás
+
+Arquivos vetoriais (shp) do Mapa de integração geológico-geofísica preliminar da ARIM Carajás
+Escala 1:250.000,
+Sistema de Coordenadas Geográficas, Datum SIRGAS - 2000. (EPSG - 4674)
+Data da Publicação: 13/05/2019
+
+
+1 - Informações sobre a Litologia
+
+a) Os atributos contidos na Litologia foram extraídos da base "Lito"do GEOSGB em 05/05/2021.
+*As Unidades que possuem no "COD_UNI_ES" valor igual a 0 (zero), não constam na base "Lito" do GEOSGB até 05/05/2021.
+OBS: As informações contidas nas shapefile foram extraídas do Mapa de integração Geológico-Geofísica da ARIM Carajás (Versão Preliminar).
+
+b) Os arquivos de estilo *Sld (OGC® Styled Layer Descriptor), *QML (QGIS - Open Source Geographic Information System - Versão do QGIS - 3.16.9-Hannover) e *lyr/lyrx (ESRI© - LayerFile - ArcGis - Versão 10.1 e ArcGIS Pro 2.8), da camada de Litoestratigrafia, estão localizados na pasta Litologia.
+
+OBS: As cores das unidades litológicas podem apresentar divergências em áreas limites quando associadas a outras folhas vizinhas de períodos, projetos e/ou temas diferentes, pois elas representam as cores extraídas dos seus respectivos mapas.
+
+O Serviço Geológico do Brasil - CPRM, dispõem de uma biblioteca com simbologias integradas das unidades litológicas do Brasil, onde as cores são definidas a partir da ordem de chegada dos mapas, assumindo a cor do mapa mais antigo.
+
+Para fazer o download das bibliotecas clique em: https://geosgb.cprm.gov.br/geosgb/simbologia.html
+
+
+2 - Informações sobre os Afloramentos
+
+a) Os atributos contidos nos Afloramentos foram extraídos da base "Aflora" do GEOSGB em 05/05/2021.
+
+
+3 - Informações sobre Ocorrências Minerais 
+
+a) Os atributos contidos nas Ocorrências Minerais foram extraídos da base "Recmin" do GEOSGB em 05/05/2021.
+
+
+4 - Base Cartográfica
+
+Base Planimétrica digital obtida das cartas impressas SB-22-V-D-IV, SB-22-V-D-V, SB-22-V-D-VI, SB-22-X-C-IV, SB-22-X-C-V, SB-22-X-CVI, SB-22-Y-B-I, SB-22-Y-B-II, SB-22-Y-B-III, SB-22-Z-A-I, SB-22-Z-A-II, SB-22-Z-A-III, SB-22-Y-B-IV, SB-22-Y-B-V, SB-22-Y-B-VI, SB-22-Z-A-IV, SB-22-Z-A-V, SB-22-Z-A-VI publicadas em 1983, pelo IBGE, ajustada às imagens do Mosaico GeoCover - 2.000, ortorretificado e georreferenciado segundo o datum SIRGAS 2000, de imagens ETM+ do Landsat 7, resultante da fusão das bandas 7,4,2 e 8, com resolução espacial de 14,25 metros. Esta base foi editada e atualizada pela Superintendência de Regional de Belém, com o apoio da Gerência de Relações Institucionais e Desenvolvimento (GERIDE-BE) para atender ao mapeamento temático do Serviço Geológico do Brasil.
+
+Dados aerogeofísicos obtidos nos projetos aerogeofisicos Tucuruí (2010), Rio Maria (2015) e Oeste de Carajás (2015), executados pelo Serviço Geológico do Brasil - CPRM. Os levantamentos foram com linhas de vôo de direção NS, espaçadas a cada 500 m com linhas de controle E-W espaçadas de 10 km, attura do voo sobre o terreno de 100 m e dados radiométricos em concentração de elementos.
+
+
+Para mais informações: http://rigeo.cprm.gov.br/jspui/handle/doc/19048
