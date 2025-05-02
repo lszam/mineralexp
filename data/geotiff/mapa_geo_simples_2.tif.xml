@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmd:MD_Metadata xsi:schemaLocation="http://www.isotc211.org/2005/gmd ../schemas/iso19139fra/gmd/gmd.xsd" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:map="urn:brgm:mapping" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:gfc="http://www.isotc211.org/2005/gfc" xmlns:gco="http://www.isotc211.org/2005/gco">
+	<geosoft xmlns="http://www.geosoft.com/schema/geo">
+		<dataset version="1">
+			<lineage>
+				<process name="MapExport" user="DESKTOP-LUIZEMA\Luizemara" version="Version 2023.2 (20231121.28)" date="2025-05-01" time="16:41:58">
+					<parameter name="MAPEXPORT.ACTIVEVIEW" value="Data" type="string"/>
+					<parameter name="MAPEXPORT.BITS" value="24" type="integer"/>
+					<parameter name="MAPEXPORT.CELLSIZE" value="101.599997955797" type="double"/>
+					<parameter name="MAPEXPORT.DITHER" value="FloydsteinDithering" type="string"/>
+					<parameter name="MAPEXPORT.FORMAT" value="GeoTIFF (*.tif)" type="string"/>
+					<parameter name="MAPEXPORT.MAXX" value="169.350250991332" type="double"/>
+					<parameter name="MAPEXPORT.MAXY" value="87.2445271821777" type="double"/>
+					<parameter name="MAPEXPORT.MINX" value="2.89113178452779" type="double"/>
+					<parameter name="MAPEXPORT.MINY" value="2.87185394131878" type="double"/>
+					<parameter name="MAPEXPORT.NAME" value=".\geotiff\mapa_geo_simples_2.tif" type="string"/>
+					<parameter name="MAPEXPORT.OPTIONS" value="" type="string"/>
+					<parameter name="MAPEXPORT.OUTPUT" value="FILE" type="string"/>
+					<parameter name="MAPEXPORT.SIZEX" value="3277" type="integer"/>
+					<parameter name="MAPEXPORT.SIZEY" value="1661" type="integer"/>
+					<parameter name="MAPEXPORT.VIEWS" value="2" type="integer"/>
+				</process>
+			</lineage>
+			<title>mapa_geo_simples_2</title>
+			<file_format>tif</file_format>
+			<project_name>g:\meu drive\pesquisa\colaboradores\oderson\carajas_2025\carajas2025_mag.gpf</project_name>
+			<data_created_by>DESKTOP-LUIZEMA\Luizemara</data_created_by>
+			<data_creation_date>2025-05-01</data_creation_date>
+			<metadata_created_by>DESKTOP-LUIZEMA\Luizemara</metadata_created_by>
+			<metadata_creation_date>2025-05-01</metadata_creation_date>
+			<georeference>
+				<dataextents>
+					<extent2d minx="334146.06360110908" miny="9225924.4866514243" maxx="666987.65690430021" maxy="9394580.4832580481"/>
+				</dataextents>
+				<projection type="TRANSVERSE_MERCATOR" name="SIRGAS 2000 / UTM zone 22S" wellknown_epsg="31982" projection="UTM zone 22S" ellipsoid="GRS 1980" datum="SIRGAS 2000" datumtrf="SIRGAS 2000 to WGS 84 (1)" datumtrf_epsg="15894" datumtrf_description="[SIRGAS 2000] (1m) Latin America - SIRGAS 2000 by country" radius="6378137" eccentricity="0.081819191042815806">
+					<shift x="0" y="0" z="0"/>
+					<parameters scale="0.9996" false_east="500000" false_north="10000000" lat_origin="0" lon_origin="-51"/>
+					<units name="m" unit_scale="1"/>
+				</projection>
+			</georeference>
+		</dataset>
+	</geosoft>
+	<gmd:dataQualityInfo>
+		<gmd:DQ_DataQuality>
+			<gmd:lineage>
+				<gmd:LI_Lineage>
+					<gmd:processStep xlink:type="Geosoft Process" xlink:title="MapExport">
+						<gmd:LI_ProcessStep>
+							<gmd:dateTime>
+								<gco:DateTime>2025-05-01T16:41:58</gco:DateTime>
+							</gmd:dateTime>
+							<gmd:processor>
+								<gmd:CI_ResponsibleParty>
+									<gmd:individualName>
+										<gco:CharacterString>DESKTOP-LUIZEMA\Luizemara</gco:CharacterString>
+									</gmd:individualName>
+								</gmd:CI_ResponsibleParty>
+							</gmd:processor>
+							<gmd:source xlink:type="Data Parameter" xlink:role="MAPEXPORT.ACTIVEVIEW" xlink:title="Data">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="MAPEXPORT.BITS" xlink:title="24">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="MAPEXPORT.CELLSIZE" xlink:title="101.599997955797">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="MAPEXPORT.DITHER" xlink:title="FloydsteinDithering">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="MAPEXPORT.FORMAT" xlink:title="GeoTIFF (*.tif)">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="MAPEXPORT.MAXX" xlink:title="169.350250991332">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="MAPEXPORT.MAXY" xlink:title="87.2445271821777">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="MAPEXPORT.MINX" xlink:title="2.89113178452779">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="MAPEXPORT.MINY" xlink:title="2.87185394131878">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="MAPEXPORT.NAME" xlink:title=".\geotiff\mapa_geo_simples_2.tif">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="MAPEXPORT.OPTIONS" xlink:title="">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="MAPEXPORT.OUTPUT" xlink:title="FILE">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="MAPEXPORT.SIZEX" xlink:title="3277">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="MAPEXPORT.SIZEY" xlink:title="1661">
+								<gmd:LI_Source/>
+							</gmd:source>
+							<gmd:source xlink:type="Data Parameter" xlink:role="MAPEXPORT.VIEWS" xlink:title="2">
+								<gmd:LI_Source/>
+							</gmd:source>
+						</gmd:LI_ProcessStep>
+					</gmd:processStep>
+				</gmd:LI_Lineage>
+			</gmd:lineage>
+		</gmd:DQ_DataQuality>
+	</gmd:dataQualityInfo>
+	<gmd:identificationInfo>
+		<gmd:MD_DataIdentification>
+			<gmd:citation>
+				<gmd:CI_Citation>
+					<gmd:title>
+						<gco:CharacterString>mapa_geo_simples_2</gco:CharacterString>
+					</gmd:title>
+					<gmd:collectiveTitle>
+						<gco:CharacterString>g:\meu drive\pesquisa\colaboradores\oderson\carajas_2025\carajas2025_mag.gpf</gco:CharacterString>
+					</gmd:collectiveTitle>
+					<gmd:date>
+						<gmd:CI_Date>
+							<gmd:date>
+								<gco:Date>2025-5-1</gco:Date>
+							</gmd:date>
+						</gmd:CI_Date>
+					</gmd:date>
+				</gmd:CI_Citation>
+			</gmd:citation>
+			<gmd:resourceFormat>
+				<gmd:MD_Format>
+					<gmd:name>
+						<gco:CharacterString>tif</gco:CharacterString>
+					</gmd:name>
+				</gmd:MD_Format>
+			</gmd:resourceFormat>
+			<gmd:pointOfContact>
+				<gmd:CI_ResponsibleParty>
+					<gmd:individualName>
+						<gco:CharacterString>DESKTOP-LUIZEMA\Luizemara</gco:CharacterString>
+					</gmd:individualName>
+				</gmd:CI_ResponsibleParty>
+			</gmd:pointOfContact>
+			<gmd:extent>
+				<gmd:EX_Extent>
+					<gmd:geographicElement>
+						<gmd:EX_GeographicBoundingBox>
+							<gmd:westBoundLongitude>
+								<gco:Decimal>-52.501439998824658</gco:Decimal>
+							</gmd:westBoundLongitude>
+							<gmd:eastBoundLongitude>
+								<gco:Decimal>-49.488299097608518</gco:Decimal>
+							</gmd:eastBoundLongitude>
+							<gmd:southBoundLatitude>
+								<gco:Decimal>-7.0029548140351086</gco:Decimal>
+							</gmd:southBoundLatitude>
+							<gmd:northBoundLatitude>
+								<gco:Decimal>-5.4753566575452748</gco:Decimal>
+							</gmd:northBoundLatitude>
+						</gmd:EX_GeographicBoundingBox>
+					</gmd:geographicElement>
+				</gmd:EX_Extent>
+			</gmd:extent>
+		</gmd:MD_DataIdentification>
+	</gmd:identificationInfo>
+	<gmd:contact>
+		<gmd:CI_ResponsibleParty>
+			<gmd:individualName>
+				<gco:CharacterString>DESKTOP-LUIZEMA\Luizemara</gco:CharacterString>
+			</gmd:individualName>
+		</gmd:CI_ResponsibleParty>
+	</gmd:contact>
+	<gmd:dateStamp>
+		<gco:Date>2025-5-1</gco:Date>
+	</gmd:dateStamp>
+	<gmd:referenceSystemInfo>
+		<gmd:MD_ReferenceSystem>
+			<gmd:referenceSystemIdentifier>
+				<gmd:RS_Identifier>
+					<gmd:codeSpace>
+						<gco:CharacterString>ESRI</gco:CharacterString>
+					</gmd:codeSpace>
+					<gmd:code>
+						<gco:CharacterString>PROJCS["SIRGAS_2000_UTM_Zone_22S",GEOGCS["GCS_SIRGAS_2000",DATUM["D_SIRGAS_2000",SPHEROID["GRS_1980",6378137.0,298.257222101]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],PROJECTION["Transverse_Mercator"],PARAMETER["False_Easting",500000.0],PARAMETER["False_Northing",10000000.0],PARAMETER["Central_Meridian",-51.0],PARAMETER["Scale_Factor",0.9996],PARAMETER["Latitude_Of_Origin",0.0],UNIT["Meter",1.0],AUTHORITY["EPSG",31982]]</gco:CharacterString>
+					</gmd:code>
+					<gmd:version>
+						<gco:CharacterString>1</gco:CharacterString>
+					</gmd:version>
+				</gmd:RS_Identifier>
+			</gmd:referenceSystemIdentifier>
+		</gmd:MD_ReferenceSystem>
+	</gmd:referenceSystemInfo>
+</gmd:MD_Metadata>
