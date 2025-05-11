@@ -1,23 +1,25 @@
 import os
 import numpy as np
 import glob
-import os
-import rioxarray
-import dask.array as da
-from dask_ml.decomposition import PCA
-import rasterio
-from rasterio.plot import show
-import matplotlib.pyplot as plt
-from shapely.geometry import Polygon
 import geopandas as gpd
 import pandas as pd
+import matplotlib.pyplot as plt
 
-#========================================================= #
+import dask.array as da
+from dask_ml.decomposition import PCA
+import rioxarray
+import rasterio
+from rasterio.plot import show
+from shapely.geometry import Polygon
 
+
+# PARAMETROS
 #band_list = ["SR_B2","SR_B5","SR_B6","SR_B7"] # 👈 Bandas para hidroxilas
 band_list = ["SR_B2","SR_B4","SR_B5","SR_B6"] # 👈 Bandas para óxidos de ferro
 pasta_landsat = "./python/landsat"
 main_crs = "EPSG:4326" # 👈 CRS
+k = 1 # f logistica - k menor, curva mais suave
+
 
 # (OPCIONAL) Exibir mosaicos de entrada da PCA
 for banda in band_list:
@@ -29,10 +31,10 @@ for banda in band_list:
             show(src, ax=ax, cmap="gray") 
             ax.set_title(f"Mosaico Landsat • {banda}")
             #ax.axis("off") 
+            plt.savefig(os.path.join(pasta_landsat, f"pca_input_{banda}.png"), dpi=300, bbox_inches="tight")
             plt.show()
 
-
-# ==================== PCA com Dask-ML ==================== #
+print("# ==================== PCA com Dask-ML ==================== #")
 
 # AOI 
 aoi = {
@@ -42,9 +44,22 @@ aoi = {
         [-48.72, -8.05],          # SE
         [-48.72, -4.93],          # NE
         [-51.44, -4.93],          # NW
-        [-51.44, -8.05],          # fecha
+        [-51.44, -8.05],          # fechar o polígono
     ]]
 }
+'''
+#Area menor
+aoi = {
+    "type": "Polygon",
+    "coordinates": [[
+        [-52.50, -7.00],   # canto sudoeste 
+        [-49.50, -7.00],   # canto sudeste
+        [-49.50, -5.50],   # canto nordeste
+        [-52.50, -5.50],   # canto noroeste
+        [-52.50, -7.00]    # fechar o polígono
+    ]]
+}
+'''
 
 aoi_geom = Polygon(aoi["coordinates"][0])
 aoi_gdf  = gpd.GeoDataFrame(geometry=[aoi_geom], crs=main_crs)
@@ -55,29 +70,30 @@ for banda in band_list:
     path = os.path.join(pasta_landsat, f"mosaico_{banda}.tif")
     da_banda = (
         rioxarray.open_rasterio(path, chunks=(1, 2048, 2048))
-                 .squeeze("band")                          # remove dimensão band=1
+                 .squeeze("band") # remove dimensão band=1
                  .rio.clip(aoi_gdf.geometry, aoi_gdf.crs)  # recorte AOI
                  .astype("float32")
     )
     dataarrays.append(da_banda)
 
-# 2. Empilhar as bandas: shape = (bands, y, x)
+print("Empilhar bandas... shape das bandas = (bands, y, x)")
 stack = da.stack([da.data for da in dataarrays], axis=0)
 
-# 3. Preparar para PCA: shape = (pixels, bands)
+print("Preparar para PCA... shape = (pixels, bands)")
 flat = stack.reshape((len(band_list), -1)).T
-# Rechunk para que só haja um bloco na dimensão das bandas
+# rechunk para garantir que só haja um bloco na dimensão das bandas
 flat = flat.rechunk({1: -1})
 
-# 4. Ajustar PCA “lazy”
+# Ajustar PCA “lazy”
+print("Executar PCA...")
 pca      = PCA(n_components=len(band_list), whiten=False)
 pc_flat  = pca.fit_transform(flat)        # (pixels, components)
 
-# 5. Voltar ao cubo: shape = (components, y, x)
+# Voltar ao cubo: shape = (components, y, x)
 n_rows, n_cols = stack.shape[1:]
 pc_cube = pc_flat.T.reshape((len(band_list), n_rows, n_cols))
 
-# 6. Visualizar
+'''# Visualizar
 fig, axes = plt.subplots(2, 2, figsize=(12, 10))
 axes = axes.flatten()
 for idx in range(len(band_list)):    # deve ser 4
@@ -88,10 +104,11 @@ for idx in range(len(band_list)):    # deve ser 4
     ax.axis("off")
     fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
 plt.tight_layout()
-plt.savefig(os.path.join(pasta_landsat, "pca_componentes.png"), dpi=300, bbox_inches="tight")
-plt.show()
+#plt.savefig(os.path.join(pasta_landsat, "pca_componentes_hx.png"), dpi=300, bbox_inches="tight") # HX
+plt.savefig(os.path.join(pasta_landsat, "pca_componentes_fe.png"), dpi=300, bbox_inches="tight")
+plt.show()'''
 
-# 7. Salvar cada componente em TIFF separado
+# Salvar cada componente em TIFF separado
 modelo = os.path.join(pasta_landsat, f"mosaico_{band_list[0]}.tif")
 with rasterio.open(modelo) as ref:
     metadados = ref.meta.copy()
@@ -108,54 +125,60 @@ for idx in range(len(band_list)):
         print(f"Erro ao gravar arquivo {out_path}")
         continue
 
-# ==================== MAPAS “CROSTA” (HIDROXILA e FERRO-ÓXIDO) ====================
+print("# ==================== MAPAS “CROSTA” ==================== #")
+# Montar o mapa de HIDROXILAS (H):
+#      Em Loughlin 1991, para TM1,4,5,7 (aqui B2,B5,B6,B7) o PC4
+#      destaca as Hidroxilas como pixels ESCUROS, então 
+#      precisa inverter o sinal:
+#      h_map = -pc4
+# Montar o mapa de FERRO-ÓXIDO (F):
+#      Em Loughlin 1991, para TM1,3,4,5 (aqui B2,B4,B5,B6) o PC4
+#      destaca Ferro como pixels claros, então mantemos como está:
+#      f_map = pc4
 
-# 5.b) Extrair o quarto componente (PC4) já calculado
-#    pc_cube.shape == (4, n_rows, n_cols)
+# Extrair PC4
 pc4 = pc_cube[3].compute()    # PC4 como array 2D
 
-# 5.c) Puxar os loadings (autovetores) do modelo PCA
+# Puxar os loadings (autovetores) do modelo PCA
 components = pca.components_
 if hasattr(components, "compute"):
     components = components.compute()
 
-pc4_loadings = components[3, :]    # vetor de 4 pesos, na ordem band_list
+pc4_loadings = components[3, :]  # vetor de 4 pesos, na ordem band_list
 print("Loadings do PC4 (B2, B5, B6, B7):", pc4_loadings)
 
-# 5.d) Montar o mapa de HIDROXILAS (H):
-#      Em Loughlin 1991, para TM1,4,5,7 (aqui B2,B5,B6,B7) o PC4
-#      destaca as Hidroxilas como pixels ESCUROS, então 
-#      precisa inverter o sinal:
-# h_map = -pc4
+if pc4_loadings[band_list.index("SR_B4")] < 0:
+    f_map = -pc4
+    print("PC4 foi invertido (SR_B4 negativo).")
+else:
+    f_map = pc4
+    print("PC4 não foi invertido (SR_B4 positivo).", )
 
-# 5.e) Montar o mapa de FERRO-ÓXIDO (F):
-#      Em Loughlin 1991, para TM1,3,4,5 (aqui B2,B4,B5,B6) o PC4
-#      destaca Ferro como pixels claros, então mantemos como está:
-f_map = pc4
-  
-
-# 5.f) Salvar e mostrar o mapa do alvo
-out_h = os.path.join(pasta_landsat, "tcc_landsat_crosta_FE.tif")
-#out_h = os.path.join(pasta_landsat, "tcc_landsat_crosta_FE.tif")
+# Salvar e mostrar o mapa do alvo
+#out_h = os.path.join(pasta_landsat, "tcc_landsat_ mapa-crosta-hx.tif")
+out_h = os.path.join(pasta_landsat, "tcc_landsat_ mapa-crosta-fe.tif")
 
 meta = metadados.copy()
 try: 
     with rasterio.open(out_h, "w", **meta) as dst:
         dst.write(f_map.astype("float32"), 1)
-    print("✅  Mapa de Hidroxilas salvo em", out_h)
+    print("✅  Mapa salvo em", out_h)
 except: 
     print("     Erro ao salvar o arquivo")
 
 fig, ax = plt.subplots(1,1, figsize=(6,6))
-im = ax.imshow(f_map, cmap="magma")
-ax.set_title("Crosta – Hidroxilas (PC4 com sinal invertido)")
+im = ax.imshow(f_map, cmap="viridis")
+#ax.set_title("Mapa Crosta – Hidroxilas (PC4)")
+ax.set_title("Mapa Crosta – Óx. Ferro (PC4)")
 ax.axis("off")
 fig.colorbar(im, ax=ax, fraction=0.04, pad=0.04)
 plt.tight_layout()
+#plt.savefig(os.path.join(pasta_landsat, "pca_mapa-crosta_hx.png"), dpi=300, bbox_inches="tight")
 plt.savefig(os.path.join(pasta_landsat, "pca_mapa-crosta_fe.png"), dpi=300, bbox_inches="tight")
 plt.show()
 
 # ==================== ANALISE DAS PCs ==================== #
+print("# ==================== LOADINGS ==================== #")
 
 # Extrair componentes (loadings) do PCA
 components = pca.components_
@@ -164,7 +187,13 @@ components = pca.components_
 if hasattr(components, "compute"):
     components = components.compute()
 
-# Calcular contribuição percentual de cada banda ──
+print("\nAutovetores (loadings) de cada PC:")
+for i, vec in enumerate(components):
+    print(f"PC{i+1}:", dict(zip(band_list, np.round(vec, 3))))
+
+#pc4 = components[3]   # vetor para PC4
+
+# Calcular contribuição percentual de cada banda
 loadings_sq = components**2
 pct = loadings_sq / loadings_sq.sum(axis=1)[:, None] * 100
 
@@ -185,8 +214,40 @@ for i in range(df.shape[0]):
     for j in range(df.shape[1]):
         val = df.iloc[i, j] # anotar cada valor da contribuição 
         ax.text(j, i, f"{val:.1f}%", ha='center', va='center', color='white' if val<50 else 'black')
-fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+fig.colorbar(im, ax=ax)#, fraction=0.046, pad=0.04)
 ax.set_title("Percentual de contribuição das bandas em cada PC")
 plt.tight_layout()
-plt.savefig(os.path.join(pasta_landsat, "pca_tabela.png"), dpi=300, bbox_inches="tight")
+#plt.savefig(os.path.join(pasta_landsat, "pca_tabela_hx.png"), dpi=300, bbox_inches="tight")
+plt.savefig(os.path.join(pasta_landsat, "pca_tabela_fe.png"), dpi=300, bbox_inches="tight")
+plt.show()
+
+
+
+print("-------------------- Versão normalizada da PC4 --------------------")
+
+def logistic_norm(arr, k=1.0, x0=None):
+    """
+    Aplica normalização logística ao array `arr`:
+      S(x) = 1 / (1 + exp(-k*(x-x0)))
+    - k  : slope parameter (default=1.0)
+    - x0 : center (default=mean(arr))
+    Retorna um array float em [0,1].
+    """
+    a = arr.astype("float32")
+    if x0 is None:
+        x0 = np.mean(a)
+    return 1.0 / (1.0 + np.exp(-k * (a - x0)))
+
+
+f_map_logist = logistic_norm(f_map, k=k)  
+
+fig, ax = plt.subplots(1,1, figsize=(6,6))
+im = ax.imshow(f_map_logist, cmap="viridis")
+#ax.set_title("Mapa Crosta – Hidroxilas (PC4)")
+ax.set_title("Mapa Crosta – Óx. Ferro (PC4)")
+ax.axis("off")
+fig.colorbar(im, ax=ax, fraction=0.04, pad=0.04)
+plt.tight_layout()
+#plt.savefig(os.path.join(pasta_landsat, "pca_mapa-crosta-log_hx.png"), dpi=300, bbox_inches="tight")
+plt.savefig(os.path.join(pasta_landsat, f"pca_mapa-crosta_fe-logk{k}.png"), dpi=300, bbox_inches="tight")
 plt.show()
